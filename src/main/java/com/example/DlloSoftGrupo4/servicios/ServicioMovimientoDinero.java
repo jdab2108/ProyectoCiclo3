@@ -11,5 +11,5 @@ public interface ServicioMovimientoDinero {
     public MovimientoDinero consultarMovimientosPorID(Integer codigo);
     public MovimientoDinero actualizarMovimientos(MovimientoDinero movDinero);
     public void eliminarMovimientos(Integer codigo);
-    public MovimientoDinero actualizarporID(Integer cod, Map<Object,Object> objectMap);
+    public MovimientoDinero actualizarporID(Integer codigo, Map<Object,Object> objectMap);
 }
