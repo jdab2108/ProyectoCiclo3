@@ -42,8 +42,8 @@ public class ServiciosImpMovimientoDinero implements ServicioMovimientoDinero {
     }
 
     @Override
-    public MovimientoDinero actualizarporID(Integer cod, Map<Object, Object> objectMap){
-        MovimientoDinero movDinero= repositorioMovimientoDinero.findById(cod).get();
+    public MovimientoDinero actualizarporID(Integer codigo, Map<Object, Object> objectMap){
+        MovimientoDinero movDinero= repositorioMovimientoDinero.findById(codigo).get();
         objectMap.forEach((key,value)->{
             Field field = ReflectionUtils.findField(MovimientoDinero.class,(String) key);
             field.setAccessible(true);
