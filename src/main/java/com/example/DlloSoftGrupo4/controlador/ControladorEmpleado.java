@@ -4,29 +4,36 @@ package com.example.DlloSoftGrupo4.controlador;
 import com.example.DlloSoftGrupo4.entidades.Empleado;
 import com.example.DlloSoftGrupo4.servicios.ServicioEmpleado;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
-@RequestMapping("/Empleado")
-@RestController
+//@RequestMapping("/Empleado")
+//@RestController
 
+@Controller
 public class ControladorEmpleado {
 
 
     @Autowired
     private ServicioEmpleado empl;
 
-    @GetMapping
-    public List<Empleado> listar()  {
-        return empl.listarEmpleados();
-    }
+//    @GetMapping
+//    public List<Empleado> listar()  {
+//        return empl.listarEmpleados();
+//    }
+//    @GetMapping("/{id}")
+//   public Empleado consultarPorcedula(@PathVariable("documentoEmpleado") Integer documentoEmpleado){
+//       return empl.consultarEmpleadosid(documentoEmpleado);
+//  }
 
-    @PostMapping
-    public Empleado insertar(@RequestBody Empleado empleado ){
-        return  empl.guardarEmpleados(empleado);
-    }
+//    @PostMapping
+//    public Empleado insertar(@RequestBody Empleado empleado ){
+//        return  empl.guardarEmpleados(empleado);
+//    }
 
 
     @PutMapping
@@ -35,17 +42,39 @@ public class ControladorEmpleado {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarporId(@PathVariable("id") Integer id){
-        empl.eliminarEmpleados(id);
+    public void eliminarporId(@PathVariable("documentoEmpleado") Integer documentoEmpleado){
+        empl.eliminarEmpleados(documentoEmpleado);
     }
 
     @PatchMapping("/{id}")
-    public Empleado actualizarpor(@PathVariable("id") Integer id, @RequestBody Map<Object,Object> objectMap){
-        return empl.actualizarPorId(id,objectMap);
+    public Empleado actualizarpor(@PathVariable("documentoempleado") Integer documentoEmpleado, @RequestBody Map<Object,Object> objectMap){
+        return empl.actualizarPorId(documentoEmpleado,objectMap);
     }
 
-    @GetMapping("/{id}")
-    public Empleado consultarPorcedula(@PathVariable("id") Integer id){
-        return empl.consultarEmpleadosid(id);
+    // controlador para obtener la tabla Empleado en la interfaz
+
+    @GetMapping("/Empleado")
+
+        public String listarEmpleados(Model modelo){
+        modelo.addAttribute("Empleado",empl.listarEmpleados());
+        return("tablaempleado");
     }
+
+    // controlador para mostrar el formulario de empleado
+
+    @GetMapping("Empleado/nuevo")
+        public String formualrioregistroempleado(Model modelo){
+        modelo.addAttribute("empleadoinsertar",new Empleado());
+        return "frmnuevoempleado";
+    }
+
+    @PostMapping("Empleado/guardar")
+    public String insertar(Empleado empleado){
+        empl.guardarEmpleados(empleado);
+        return "redirect:/Empleado";
+    }
+
+
+
+
 }

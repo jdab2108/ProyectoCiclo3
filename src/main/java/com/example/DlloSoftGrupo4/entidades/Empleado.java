@@ -1,5 +1,8 @@
 package com.example.DlloSoftGrupo4.entidades;
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,21 +24,23 @@ public class Empleado {
     @Column(nullable = false,length = 30)
     private String rolEmpleado;
 
-    @ManyToOne
-   @JoinColumn(name="nit")
-   Empresa nit;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @OnDelete(action=OnDeleteAction.CASCADE)
+   @JoinColumn(name="nit_empresa")
+    Empresa empresa;
+
 
 
 
     // constructores
 
 
-    public Empleado(int documentoEmpleado, String nombreEmpleado, String correoEmpleado, String rolEmpleado, Empresa nit ) {
+    public Empleado(int documentoEmpleado, String nombreEmpleado, String correoEmpleado, String rolEmpleado, Empresa empresa ) {
         this.documentoEmpleado = documentoEmpleado;
         this.nombreEmpleado = nombreEmpleado;
         this.correoEmpleado = correoEmpleado;
         this.rolEmpleado = rolEmpleado;
-        this.nit = nit;
+        this.empresa = empresa;
 
     }
 
@@ -79,10 +84,10 @@ public class Empleado {
     }
 
     public Empresa getNit() {
-        return nit;
+        return empresa;
     }
 
-    public void setNit(Empresa nit) {
-        this.nit = nit;
+    public void setNit(Empresa empresa) {
+        this.empresa = empresa;
     }
 }

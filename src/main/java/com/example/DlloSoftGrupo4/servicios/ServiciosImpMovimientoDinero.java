@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -42,13 +43,22 @@ public class ServiciosImpMovimientoDinero implements ServicioMovimientoDinero {
     }
 
     @Override
-    public MovimientoDinero actualizarporID(Integer cod, Map<Object, Object> objectMap){
-        MovimientoDinero movDinero= repositorioMovimientoDinero.findById(cod).get();
+    public MovimientoDinero actualizarporID(Integer codigo, Map<Object, Object> objectMap){
+        MovimientoDinero movDinero= repositorioMovimientoDinero.findById(codigo).get();
         objectMap.forEach((key,value)->{
             Field field = ReflectionUtils.findField(MovimientoDinero.class,(String) key);
             field.setAccessible(true);
             ReflectionUtils.setField(field,movDinero, value);
         });
         return repositorioMovimientoDinero.save(movDinero);
+    }
+
+    @Override
+    public List<MovimientoDinero> encontrarmovimientosporNit(String movDinero) {
+
+            List<MovimientoDinero> movimientoDinero= new ArrayList<>();
+           List<MovimientoDinero>  movimientoDineroList= repositorioMovimientoDinero.findAll();
+            return movimientoDinero;
+
     }
 }

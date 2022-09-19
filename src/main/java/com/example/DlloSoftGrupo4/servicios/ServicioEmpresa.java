@@ -7,16 +7,16 @@ import java.util.Map;
 
 public interface ServicioEmpresa {
 
-    public List<Empresa>ListarEmpresa();
+    public List<Empresa> ListarEmpresa();
 
     public Empresa guardarEmpresas(Empresa empresas);
 
     public Empresa actualizarEmpresas(Empresa empresas);
 
-    public void eliminarEmpresas (Integer nit);
+    public void eliminarEmpresasporId(Integer nit);
 
-    public Empresa actualizarPorId(Integer docNit, Map<Object,Object> objectMap);
+    public Empresa actualizarPorId(Integer nit, Map<Object, Object> objectMap);
 
-    public Empresa consultarEmpresaPorId(Integer nitEmpresa);
+    public Empresa consultarEmpresaPorId(Integer nit);
 
 }

@@ -1,6 +1,10 @@
 package com.example.DlloSoftGrupo4.entidades;
 
 
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.engine.internal.Cascade;
+
 import javax.persistence.*;
 import javax.xml.bind.SchemaOutputResolver;
 
@@ -11,7 +15,6 @@ public class MovimientoDinero {
 
     //Atributos
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int codigo;
 
     @Column(name = "monto_movimiento")
@@ -21,23 +24,25 @@ public class MovimientoDinero {
     private String conceptoMovimiento;
 
 
-    @ManyToOne
-    @JoinColumn(name="documentoEmpleado")
-    Empleado documentoEmpleado;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name="documento_Empleado")
+    Empleado empleado;
 
-    @ManyToOne
-    @JoinColumn(name="nit")
-    Empresa nit;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name="nit_empresa")
+    Empresa empresa;
 
     //Controladores
 
 
-    public MovimientoDinero(int codigo, double montoMovimiento, String conceptoMovimiento, Empleado documentoEmpleado,Empresa nit) {
+    public MovimientoDinero(int codigo, double montoMovimiento, String conceptoMovimiento, Empleado empleado,Empresa empresa) {
         this.codigo = codigo;
         this.montoMovimiento = montoMovimiento;
         this.conceptoMovimiento = conceptoMovimiento;
-        this.documentoEmpleado = documentoEmpleado;
-        this.nit = nit;
+        this.empleado = empleado;
+        this.empresa = empresa;
     }
 
     public MovimientoDinero() {
@@ -71,19 +76,19 @@ public class MovimientoDinero {
         this.conceptoMovimiento = conceptoMovimiento;
     }
 
-    public Empleado getDocumentoEmpleado() {
-        return documentoEmpleado;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public void setDocumentoEmpleado(Empleado documentoEmpleado) {
-        this.documentoEmpleado = documentoEmpleado;
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
 
-    public Empresa getNit() {
-        return nit;
+    public Empresa getEmpresa() {
+        return empresa;
     }
 
-    public void setNit(Empresa nit) {
-        this.nit = nit;
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 }

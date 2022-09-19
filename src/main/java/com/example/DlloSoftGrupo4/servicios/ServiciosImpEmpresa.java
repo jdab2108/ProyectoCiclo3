@@ -22,8 +22,8 @@ public class ServiciosImpEmpresa implements ServicioEmpresa {
     }
 
     @Override
-    public Empresa consultarEmpresaPorId(Integer nitEmpresa) {
-        return repositorioEmpresa.findById(nitEmpresa).get();
+    public Empresa consultarEmpresaPorId(Integer nit) {
+        return repositorioEmpresa.findById(nit).get();
     }
 
     @Override
@@ -38,13 +38,13 @@ public class ServiciosImpEmpresa implements ServicioEmpresa {
 
 
     @Override
-    public void eliminarEmpresas(Integer documento) {
-        repositorioEmpresa.deleteById(documento);
+    public void eliminarEmpresasporId(Integer nit) {
+        repositorioEmpresa.deleteById(nit);
     }
 
     @Override
-    public Empresa actualizarPorId(Integer docNit, Map<Object, Object> objectMap) {
-        Empresa empresa= repositorioEmpresa.findById(docNit).get();
+    public Empresa actualizarPorId(Integer nit, Map<Object, Object> objectMap) {
+        Empresa empresa= repositorioEmpresa.findById(nit).get();
         objectMap.forEach((key,value)->{
             Field field = ReflectionUtils.findField(Empresa.class,(String) key);
             field.setAccessible(true);

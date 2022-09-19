@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ServiciosImpEmpleado implements com.example.DlloSoftGrupo4.servicios.ServicioEmpleado {
+public class ServiciosImpEmpleado implements ServicioEmpleado {
 
 
     @Autowired
@@ -44,8 +44,8 @@ public class ServiciosImpEmpleado implements com.example.DlloSoftGrupo4.servicio
     }
 
     @Override
-    public Empleado actualizarPorId(Integer ced, Map<Object, Object> objectMap) {
-        Empleado empleado= repositorioEmpleado.findById(ced).get();
+    public Empleado actualizarPorId(Integer documentoEmpleado, Map<Object, Object> objectMap) {
+        Empleado empleado= repositorioEmpleado.findById(documentoEmpleado).get();
         objectMap.forEach((key,value)->{
             Field field = ReflectionUtils.findField(Empleado.class,(String) key);
             field.setAccessible(true);

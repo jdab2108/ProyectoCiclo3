@@ -13,12 +13,12 @@ public interface ServicioEmpleado {
     public Empleado guardarEmpleados(Empleado empleado);
 
 
-    public Empleado consultarEmpleadosid(Integer id);
+    public Empleado consultarEmpleadosid(Integer documentoEmpleado);
 
     public Empleado actualizarEmpleados(Empleado empleado);
 
-    public void eliminarEmpleados(Integer id);
+    public void eliminarEmpleados(Integer documentoEmpleado);
 
-    public Empleado actualizarPorId(Integer id, Map<Object,Object> objectMap);
+    public Empleado actualizarPorId(Integer documentoEmpleado, Map<Object,Object> objectMap);
 
 }
