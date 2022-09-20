@@ -8,15 +8,18 @@ import com.example.DlloSoftGrupo4.servicios.ServicioEmpresa;
 import com.example.DlloSoftGrupo4.servicios.ServicioMovimientoDinero;
 import com.example.DlloSoftGrupo4.servicios.ServiciosImpMovimientoDinero;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.ClientInfoStatus;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/Empresa")
 @RestController
-
+//@Controller
 public class ControladorMovimientoDinero {
 
 
@@ -24,7 +27,7 @@ public class ControladorMovimientoDinero {
     private ServicioMovimientoDinero smd;
 
     @GetMapping("/MovimientoDinero/all")
-    public List<MovimientoDinero> listar()  {
+   public List<MovimientoDinero> listar()  {
         return smd.listarMovimientoDinero();
     }
 
@@ -56,6 +59,27 @@ public class ControladorMovimientoDinero {
     public MovimientoDinero actualizarpor(@PathVariable("codigo") Integer codigo, @RequestBody Map<Object,Object> objectMap){
         return smd.actualizarporID(codigo,objectMap);
     }
+
+    // consulta de movimiento dinero con nit y movimientoDinero
+    @GetMapping("/{nit}/MovimientoDinero")
+    public ArrayList<MovimientoDinero> movimientosPorEmpresa(@PathVariable("nit") Integer nit){
+        return  smd.obtenerPorEmpresa(nit);
+    }
+
+    // controlador para mostrar el formulario de empleado
+
+
+//    @GetMapping("MovimientoDinero")
+//    public String formularioregistromovimientos(Model modelo){
+//        modelo.addAttribute("movimientosinsertar",new MovimientoDinero());
+//        return "frmnuevomovdinero";
+//    }
+
+//    @PostMapping("MovimientoDinero/guardar")
+ //       public String insertarmovimientos(MovimientoDinero movdinero){
+//        smd.guardarMovimientos(movdinero);
+//        return "redirect:/MovimientoDinero";
+//}
 
 
 }

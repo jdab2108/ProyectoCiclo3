@@ -61,4 +61,9 @@ public class ServiciosImpMovimientoDinero implements ServicioMovimientoDinero {
             return movimientoDinero;
 
     }
+
+    @Override
+    public ArrayList<MovimientoDinero> obtenerPorEmpresa(Integer nit) {
+        return repositorioMovimientoDinero.findByEmpresa(nit);
+    }
 }

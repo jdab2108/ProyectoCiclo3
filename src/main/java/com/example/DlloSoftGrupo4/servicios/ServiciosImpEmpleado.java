@@ -38,9 +38,10 @@ public class ServiciosImpEmpleado implements ServicioEmpleado {
     }
 
     @Override
-    public void eliminarEmpleados(Integer cedula) {
+    public boolean eliminarEmpleados(Integer cedula) {
         repositorioEmpleado.deleteById(cedula);
 
+        return false;
     }
 
     @Override

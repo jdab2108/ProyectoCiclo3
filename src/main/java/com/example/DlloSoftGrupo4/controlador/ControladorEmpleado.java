@@ -21,8 +21,8 @@ public class ControladorEmpleado {
     @Autowired
     private ServicioEmpleado empl;
 
-//    @GetMapping
-//    public List<Empleado> listar()  {
+//   @GetMapping
+//  public List<Empleado> listar()  {
 //        return empl.listarEmpleados();
 //    }
 //    @GetMapping("/{id}")
@@ -42,21 +42,29 @@ public class ControladorEmpleado {
     }
 
     @DeleteMapping("/{id}")
-    public void eliminarporId(@PathVariable("documentoEmpleado") Integer documentoEmpleado){
-        empl.eliminarEmpleados(documentoEmpleado);
+    public String eliminarporId(@PathVariable("documentoEmpleado") Integer documentoEmpleado){
+        boolean respuesta= empl.eliminarEmpleados(documentoEmpleado);
+
+        if (respuesta){
+            return "Se eliminó el empleado"+documentoEmpleado+"con éxito";
+        }else{
+            return "No se pudo eliminar correctamente el empleado"+documentoEmpleado;
+        }
+
     }
 
-    @PatchMapping("/{id}")
+
+
+    @PatchMapping("/Empleado/{id}")
     public Empleado actualizarpor(@PathVariable("documentoempleado") Integer documentoEmpleado, @RequestBody Map<Object,Object> objectMap){
         return empl.actualizarPorId(documentoEmpleado,objectMap);
     }
 
     // controlador para obtener la tabla Empleado en la interfaz
 
-    @GetMapping("/Empleado")
-
-        public String listarEmpleados(Model modelo){
-        modelo.addAttribute("Empleado",empl.listarEmpleados());
+   @GetMapping("/Empleado")
+       public String listarEmpleados(Model modelo){
+       modelo.addAttribute("Empleado",empl.listarEmpleados());
         return("tablaempleado");
     }
 
@@ -69,7 +77,7 @@ public class ControladorEmpleado {
     }
 
     @PostMapping("Empleado/guardar")
-    public String insertar(Empleado empleado){
+        public String insertar(Empleado empleado){
         empl.guardarEmpleados(empleado);
         return "redirect:/Empleado";
     }

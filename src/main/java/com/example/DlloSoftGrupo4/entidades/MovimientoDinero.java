@@ -26,7 +26,7 @@ public class MovimientoDinero {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name="documento_Empleado")
+    @JoinColumn(name="documento_empleado")
     Empleado empleado;
 
     @ManyToOne(cascade = CascadeType.ALL)

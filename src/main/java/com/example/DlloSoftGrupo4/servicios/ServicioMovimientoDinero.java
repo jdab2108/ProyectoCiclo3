@@ -15,5 +15,6 @@ public interface ServicioMovimientoDinero {
     public void eliminarMovimientos(Integer codigo);
     public MovimientoDinero actualizarporID(Integer codigo, Map<Object,Object> objectMap);
     public List<MovimientoDinero> encontrarmovimientosporNit(String movDinero);
+    ArrayList<MovimientoDinero> obtenerPorEmpresa(Integer nit);
 
 }

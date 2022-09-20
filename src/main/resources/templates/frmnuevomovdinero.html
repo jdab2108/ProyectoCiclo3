@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestion - Movimientos</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/stylefrm.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/stylefrm.css}">
 
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,22 +44,40 @@
     <!--Formulario-->
 <section class="formulario">
     <div class="container">
+
         <div class="title" >Movimiento de dinero</div>
-        <form action="#" method="" class="frm">
+
+        <form th:action="@{/MovimientoDinero/guardar}" th:object="@{movimientosinsertar}" method="POST" class="frm">
             <div class="user-details">
+
                 <div class="input-box">
-                    <span class="details">Monto</span>
-                    <input type="text" placeholder="Ingrese el monto" id="Monto" required>
+
+                    <span class="details">codigo</span>
+                    <input type="text" placeholder="Ingrese el codigo" id="codigo" required th:field="*{codigo}">
                 </div>
+
                 <div class="input-box">
-                    <span class="details">Concepto</span>
-                    <input type="text" placeholder="Ingrese el concepto" id="concepto" required>
+                    <span class="details">monto_movimiento</span>
+                    <input type="text" placeholder="Ingrese el monto" id="monto" required th:field="*{monto_dinero}">
                 </div>
+
                 <div class="input-box">
-                    <span class="details">Fecha</span>
-                    <input type="date">
+                    <span class="details">concepto_movimiento</span>
+                    <input type="text" placeholder="Ingrese el concepto" id="concepto" required th:field="*{concepto_movimiento}">
                 </div>
+
+                <div class="input-box">
+                    <span class="details">documento_empleado</span>
+                    <input type="text" placeholder="documento_empleado" id="documento" required th:field="*{documento_empleado}">
+                </div>
+
+                <div class="input-box">
+                    <span class="details">nit_empresa</span>
+                    <input type="text" placeholder="nitempresa" id="nit" required th:field="*{nit_empresa}">
+                </div>
+
             </div>
+
             <div class="boton">
                 <input type="submit" value="Registrar">
             </div>

@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestion - Movimientos</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/stylefrm.css">
-    <link rel="stylesheet" href="css/styletable.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/stylefrm.css}">
+    <link rel="stylesheet" th:href="@{/css/styletable.css}">
 
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,38 +51,23 @@
     <table class="content-table">
         <thead>
             <tr>
-                <th>Concepto</th>
-                <th>Monto</th>
-                <th>Fecha</th>
-                <th>Usuario</th>
+                <th>Codigo</th>
+                <th>Monto_Movimiento</th>
+                <th>Concepto_Movimiento</th>
+                <th>Documento_Empleado</th>
+                <th>Nit_Empresa</th>
+
             </tr>
         </thead>
 
         <tbody>
-            <tr>
-                <td>XXX</td>
-                <td>XXX</td>
-                <td>XXX</td>
-                <td>XXX</td>
+            <tr th:each="i:${MovimientoDinero}">
+                <td th:text="${i.codigo}"></td>
+                <td th:text="${i.montoMovimiento}"></td>
+                <td th:text="${i.montoMovimiento}"></td>
+                <td th:text="${i.documento_empleado}"></td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+
         </tbody>
     </table>
     <input class="boton" type="submit" value="Total">   
